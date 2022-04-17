@@ -14,4 +14,9 @@ headers={'User-Agent':user_agent}
 url = "https://www.acmicpc.net/status?top=" + str(start)
 html = requests.get(url, headers=headers).text
 soup = BeautifulSoup(html, 'html.parser')
-sign=0
+nid = "solution-42000000"
+tr = soup.find(id=nid)
+# find user information from solved.ac
+usr_url = "https://solved.ac/search/users?query=" + tds[1].text.strip()
+usr_html = requests.get(usr_url, headers=headers).text
+usr_soup = BeautifulSoup(usr_html, 'html.parser')
